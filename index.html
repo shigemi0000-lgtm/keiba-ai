@@ -205,7 +205,7 @@ function renderIfToday(){if(st.view==='today'){document.getElementById('main').i
 
 async function tryFetch(proxyUrl, isJson){
   const ctrl=new AbortController();
-  const t=setTimeout(()=>ctrl.abort(),10000);
+  const t=setTimeout(()=>ctrl.abort(),6000);
   try{
     const res=await fetch(proxyUrl,{signal:ctrl.signal});
     clearTimeout(t);
@@ -216,47 +216,41 @@ async function tryFetch(proxyUrl, isJson){
 }
 
 async function fetchRaces(force=false){
-  if(autoRaces&&autoRaces!=='error'&&!force) return;
+  if(autoRaces&&autoRaces!=='error'&&autoRaces!=='fallback'&&!force) return;
   autoRaces='loading';
   renderIfToday();
   const ds=todayDs();
+  const nk=`https://race.netkeiba.com/top/race_list.html?kaisai_date=${ds}`;
+  const yh=`https://keiba.yahoo.co.jp/race/list/${ds}/`;
 
-  // Try sources in order
-  const sources=[
-    // corsproxy.io → netkeiba
-    async()=>{
-      const html=await tryFetch('https://corsproxy.io/?url='+encodeURIComponent(`https://race.netkeiba.com/top/race_list.html?kaisai_date=${ds}`),false);
-      return html?parseNetkeiba(html):null;
-    },
-    // allorigins.win → netkeiba
-    async()=>{
-      const html=await tryFetch('https://api.allorigins.win/get?url='+encodeURIComponent(`https://race.netkeiba.com/top/race_list.html?kaisai_date=${ds}`),true);
-      return html?parseNetkeiba(html):null;
-    },
-    // corsproxy.io → Yahoo競馬
-    async()=>{
-      const html=await tryFetch('https://corsproxy.io/?url='+encodeURIComponent(`https://keiba.yahoo.co.jp/race/list/${ds}/`),false);
-      return html?parseYahoo(html):null;
-    },
-    // allorigins.win → Yahoo競馬
-    async()=>{
-      const html=await tryFetch('https://api.allorigins.win/get?url='+encodeURIComponent(`https://keiba.yahoo.co.jp/race/list/${ds}/`),true);
-      return html?parseYahoo(html):null;
-    },
-  ];
+  // All proxies fire in parallel — take the first that returns real data
+  let found=false;
+  const attempt=async(url, isJson, parser)=>{
+    const html=await tryFetch(url, isJson);
+    if(!html||found) return;
+    const parsed=parser(html);
+    if(parsed&&Object.keys(parsed).length>0&&!found){
+      found=true;
+      autoRaces=parsed;
+      renderIfToday();
+    }
+  };
 
-  for(const src of sources){
-    try{
-      const parsed=await src();
-      if(parsed&&Object.keys(parsed).length>0){
-        autoRaces=parsed;
-        renderIfToday();
-        return;
-      }
-    }catch(e){}
+  const race=Promise.all([
+    attempt('https://api.allorigins.win/get?url='+encodeURIComponent(nk), true, parseNetkeiba),
+    attempt('https://corsproxy.io/?url='+encodeURIComponent(nk), false, parseNetkeiba),
+    attempt('https://api.allorigins.win/get?url='+encodeURIComponent(yh), true, parseYahoo),
+    attempt('https://corsproxy.io/?url='+encodeURIComponent(yh), false, parseYahoo),
+    attempt('https://api.codetabs.com/v1/proxy?quest='+encodeURIComponent(nk), false, parseNetkeiba),
+  ]);
+
+  // 8秒で強制終了 → セグメント表示にフォールバック
+  await Promise.race([race, new Promise(res=>setTimeout(res, 8000))]);
+
+  if(!found){
+    autoRaces='fallback'; // セグメント表示モードへ（エラー表示なし）
+    renderIfToday();
   }
-  autoRaces='error';
-  renderIfToday();
 }
 
 function parseDist(txt){
@@ -484,19 +478,17 @@ function renderRaceRow(venue,race){
 }
 
 function renderToday(){
-  // Get venue list from fetched data or standard list
   const vList=st.mode==='jra'?JV:LV;
   const hidden=lv();
 
-  // Venue filter chips
+  // Venue filter chips - show data venues if available, else all
   let venuesWithData=[];
-  if(autoRaces&&autoRaces!=='loading'&&autoRaces!=='error'&&autoRaces!=='empty'){
-    venuesWithData=Object.keys(autoRaces).filter(v=>vList.includes(v));
-  }
+  const hasData=autoRaces&&typeof autoRaces==='object';
+  if(hasData) venuesWithData=Object.keys(autoRaces).filter(v=>vList.includes(v));
   const chipList=venuesWithData.length>0?venuesWithData:vList;
 
   let h=`<div class="vsel">
-    <div class="vsel-lbl">開催場フィルター ─── タップで表示/非表示</div>
+    <div class="vsel-lbl">${hasData?'開催場フィルター':'開催場 ─── 選択してください'} ─── タップで切替</div>
     <div class="vchips">`;
   chipList.forEach(v=>{
     const on=!hidden.has(v);
@@ -504,49 +496,38 @@ function renderToday(){
   });
   h+=`</div></div>`;
 
-  // States
+  // Loading state
   if(autoRaces===null){
     setTimeout(()=>fetchRaces(),0);
     autoRaces='loading';
-    h+=`<div class="loading"><div class="spinner"></div><div class="load-txt">レース情報を取得中...</div></div>`;
+    h+=`<div class="loading"><div class="spinner"></div><div class="load-txt">レース情報を取得中... (最大8秒)</div></div>`;
     return h;
   }
   if(autoRaces==='loading'){
     h+=`<div class="loading"><div class="spinner"></div><div class="load-txt">レース情報を取得中...</div></div>`;
     return h;
   }
-  if(autoRaces==='error'){
-    // Fallback: show segment recommendations
-    h+=`<div style="padding:10px 14px;background:#1a1400;border-bottom:1px solid #332800">
-      <div style="font-size:12px;color:#a07020;margin-bottom:4px">⚠ レース情報の自動取得に失敗しました</div>
-      <div style="font-size:11px;color:#665010;line-height:1.5">ネット接続を確認して <button id="retryBtn" style="display:inline;padding:2px 8px;background:#2a2000;border:1px solid #554010;border-radius:6px;font-size:11px;color:#c09020;cursor:pointer">↻ 再試行</button> するか、下の期待値セグメントを参考にしてください。</div>
-    </div>
-    <div style="padding:8px 14px;font-size:11px;color:var(--text3);border-bottom:1px solid #232830">開催場を選択 → 期待値の高いセグメントを確認 → JRAアプリで距離を照合</div>`;
-    // Fallback: show venue chips and segment data
-    const vList2=st.mode==='jra'?JV:LV;
-    const hidden2=lv();
-    const shown2=vList2.filter(v=>!hidden2.has(v));
-    h+=`<div class="vsel" style="position:static;border-bottom:none"><div class="vchips">`;
-    vList2.forEach(v=>{
-      h+=`<div class="vc${!hidden2.has(v)?' on':''}" data-hv="${v}">${v}</div>`;
-    });
-    h+=`</div></div>`;
-    if(shown2.length){
-      shown2.forEach(venue=>h+=renderSegFallback(venue));
+
+  // Fallback: auto-fetch failed → show segment view (no scary error message)
+  if(autoRaces==='fallback'||autoRaces==='error'){
+    h+=`<div style="padding:8px 14px;background:#161a10;border-bottom:1px solid #2a3018;display:flex;align-items:center;gap:10px">
+      <span style="font-size:12px;color:#7a9040;flex:1">ライブ取得できませんでした。期待値セグメントを表示しています。</span>
+      <button id="retryBtn" style="padding:4px 10px;background:#1e2a0a;border:1px solid #4a6020;border-radius:8px;font-size:11px;color:#9ab040;cursor:pointer;white-space:nowrap">↻ 再試行</button>
+    </div>`;
+    // Show chips + segment fallback for selected venues
+    const shown=vList.filter(v=>!hidden.has(v));
+    if(!shown.length){
+      h+=`<div class="empty">上から本日の開催場をタップしてください</div>`;
     } else {
-      h+=`<div class="empty">上から開催場をタップしてください</div>`;
+      shown.forEach(venue=>h+=renderSegFallback(venue));
     }
     return h;
   }
-  if(autoRaces==='empty'){
-    h+=`<div class="empty">本日のレースデータが<br>見つかりませんでした<br><span style="font-size:12px;color:var(--text3)">開催がない日や取得タイミングによって<br>表示されない場合があります</span></div>`;
-    return h;
-  }
 
-  // Show races grouped by venue
+  // Success: show live race data
   const visibleVenues=venuesWithData.filter(v=>!hidden.has(v));
   if(!visibleVenues.length){
-    h+=`<div class="empty">会場を選択してください<br><span style="font-size:12px;color:var(--text3)">上のチップをタップ</span></div>`;
+    h+=`<div class="empty">会場をタップして表示</div>`;
     return h;
   }
 
@@ -562,7 +543,7 @@ function renderToday(){
     h+=`<div class="vblock">
       <div class="vhdr">
         <span class="vname">${venue}</span>
-        <span class="vcount">${races.length}R開催${good.length>0?`　<span style="color:#3dbf78">◎/〇 ${good.length}件</span>`:''}</span>
+        <span class="vcount">${races.length}R${good.length>0?`　<span style="color:#3dbf78">◎/〇 ${good.length}件</span>`:''}</span>
       </div>`;
     let prevH='';
     races.forEach(race=>{
