@@ -31,45 +31,65 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 .bn-icon{font-size:21px;line-height:1}
 .bn-lbl{font-size:9px;font-weight:600;letter-spacing:.03em}
 .bn:active{opacity:.6}
+/* loading */
+.loading{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;gap:14px}
+.spinner{width:36px;height:36px;border:3px solid #2a2d35;border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.load-txt{font-size:13px;color:var(--text2)}
+.err-box{display:flex;flex-direction:column;align-items:center;padding:48px 24px;gap:12px;text-align:center}
+.err-icon{font-size:36px}
+.err-msg{font-size:13px;color:var(--text2);line-height:1.6}
+.retry-btn{margin-top:8px;padding:11px 28px;background:var(--bg3);border:1px solid #555;border-radius:var(--r);font-size:14px;color:var(--text);cursor:pointer}
+.retry-btn:active{opacity:.7}
+/* venue chips */
 .vsel{padding:10px 12px;background:var(--bg);border-bottom:1px solid #232830;position:sticky;top:0;z-index:20}
 .vsel-lbl{font-size:10px;color:var(--text3);margin-bottom:6px;letter-spacing:.07em}
 .vchips{display:flex;flex-wrap:wrap;gap:6px}
-.vc{padding:5px 11px;background:var(--bg3);border:1px solid #333;border-radius:18px;font-size:12px;cursor:pointer}
+.vc{padding:5px 11px;background:var(--bg3);border:1px solid #333;border-radius:18px;font-size:12px;cursor:pointer;transition:.1s}
 .vc.on{border-color:var(--gold);color:var(--gold);background:#1e1900}
 .vc:active{transform:scale(.93)}
 /* venue block */
-.vblock{border-bottom:3px solid #232830}
-.vhdr{display:flex;align-items:center;padding:10px 14px;background:var(--bg2);gap:8px}
+.vblock{border-bottom:3px solid #1e2128}
+.vhdr{display:flex;align-items:center;padding:10px 14px;background:var(--bg2);gap:8px;border-bottom:1px solid #2a2d35}
 .vname{font-size:16px;font-weight:700;flex:1}
-.vnote{font-size:10px;color:var(--text3);font-weight:400}
+.vcount{font-size:11px;color:var(--text3)}
 /* half divider */
-.hdiv{padding:5px 14px;font-size:10px;letter-spacing:.08em;background:#13161d;border-bottom:1px solid #1e2028;display:flex;align-items:center;gap:6px}
-.hdiv.fh{color:#555}
+.hdiv{padding:4px 14px;font-size:10px;letter-spacing:.08em;background:#13161d;border-bottom:1px solid #1e2028}
+.hdiv.fh{color:#4a5060}
 .hdiv.bh{color:var(--gold3)}
-/* segment row */
-.segrow{display:flex;align-items:flex-start;padding:9px 14px;border-left:3px solid #222;border-bottom:1px solid #191c22;gap:9px}
-.segrow.t{border-left-color:#3dbf78;background:rgba(61,191,120,.09)}
-.segrow.h{border-left-color:#2ea05a;background:rgba(46,160,90,.06)}
-.segrow.m{border-left-color:#5090d0;background:rgba(80,144,208,.06)}
-.segrow.l{border-left-color:#c07010;background:rgba(180,100,0,.04)}
-.segrow.s{opacity:.42;border-left-color:#2a2a2a}
-.segrow.x{opacity:.22;border-left-color:#1e1e1e}
-.segleft{flex:0 0 auto;min-width:36px}
-.segtag{font-size:11px;font-weight:700;padding:2px 7px;border-radius:9px;white-space:nowrap;display:inline-block}
-.segtag.t{background:#1a3a28;color:#3dbf78}
-.segtag.h{background:#162c1e;color:#2ea05a}
-.segtag.m{background:#1a2637;color:#5090d0}
-.segtag.l{background:#2a2210;color:#c07010}
-.segtag.s{background:#202020;color:#666}
-.segtag.x{background:#1e1212;color:#a03030}
-.segbody{flex:1;min-width:0}
-.segdist{font-size:14px;font-weight:600;color:var(--text);line-height:1.3}
-.segsuf{font-size:11px;color:#888;margin-left:4px;font-weight:400}
-.segsurf{font-size:10px;padding:1px 6px;border-radius:6px;display:inline-block;margin-left:5px;font-weight:600;vertical-align:middle}
-.segsurf.turf{background:#1a3020;color:#3a9a58}
-.segsurf.dirt{background:#2a1e0a;color:#9a6020}
-.segtkt{font-size:12px;color:var(--text2);margin-top:4px;line-height:1.5}
-.segnote{font-size:11px;color:#5a5a5a;margin-top:3px}
+/* race rows */
+.rrow{display:flex;align-items:flex-start;padding:9px 14px;border-left:3px solid #1e2028;border-bottom:1px solid #191c22;gap:0;cursor:default}
+.rrow.t{border-left-color:#3dbf78;background:rgba(61,191,120,.08)}
+.rrow.h{border-left-color:#2ea05a;background:rgba(46,160,90,.05)}
+.rrow.m{border-left-color:#5090d0;background:rgba(80,144,208,.05)}
+.rrow.l{border-left-color:#b06010}
+.rrow.s{opacity:.45}
+.rrow.x{opacity:.22}
+.rrow.nd{opacity:.35}
+/* row left: time + rnum */
+.rl{display:flex;flex-direction:column;align-items:center;width:40px;flex-shrink:0;padding-top:1px;gap:2px}
+.rtime{font-size:10px;color:var(--text3);white-space:nowrap}
+.rnum{font-size:13px;font-weight:700;color:var(--text2)}
+/* row center: dist + tag */
+.rc2{flex:1;min-width:0;padding:0 8px}
+.rdist{font-size:15px;font-weight:600;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.rsurf{font-size:10px;padding:1px 6px;border-radius:6px;font-weight:700;vertical-align:middle}
+.rsurf.turf{background:#1a3020;color:#3a9a58}
+.rsurf.dirt{background:#2a1e0a;color:#9a6020}
+.rtkt{font-size:12px;color:var(--text2);margin-top:4px;line-height:1.5}
+.rnote{font-size:11px;color:#5a5a5a;margin-top:2px}
+/* tag pill */
+.rtag{font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0}
+.rtag.t{background:#1a3a28;color:#3dbf78}
+.rtag.h{background:#162c1e;color:#2ea05a}
+.rtag.m{background:#1a2637;color:#5090d0}
+.rtag.l{background:#251c08;color:#b07020}
+.rtag.s{background:#1e1e1e;color:#666}
+.rtag.x{background:#1e1212;color:#a03030}
+.rtag.nd{background:#1a1a1a;color:#555}
+/* no data */
+.rrow-nd{padding:10px 14px;font-size:12px;color:#3a3d45;border-bottom:1px solid #191c22;font-style:italic}
+/* browse styles */
 .sbar{display:flex;gap:6px;padding:10px 12px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid #232830;position:sticky;top:0;background:var(--bg);z-index:15}
 .sbar::-webkit-scrollbar{display:none}
 .sbtn{flex:0 0 auto;padding:5px 12px;background:var(--bg3);border:1px solid #333;border-radius:16px;font-size:12px;cursor:pointer;white-space:nowrap}
@@ -84,6 +104,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 .sr{font-size:11px;padding:2px 8px;border-radius:10px;font-weight:700}
 .st{font-size:13px;color:var(--text);margin-top:6px;line-height:1.5}
 .sn{font-size:11px;color:var(--text2);margin-top:4px}
+/* match */
 .mwrap{padding:12px}
 .mhint{font-size:12px;color:var(--text2);background:var(--bg2);border-radius:var(--rs);padding:10px 12px;margin-bottom:12px;line-height:1.5}
 .mrow{display:flex;gap:8px;margin-bottom:8px;align-items:center}
@@ -95,7 +116,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 .mrun{width:100%;padding:13px;background:var(--gold);color:#000;font-size:15px;font-weight:700;border:none;border-radius:var(--r);cursor:pointer}
 .msel{background:var(--bg3);border:1px solid #444;border-radius:var(--rs);padding:8px 10px;font-size:14px;color:var(--text)}
 .stitle{font-size:11px;color:var(--text3);letter-spacing:.1em;padding:10px 14px 4px;font-weight:600}
-.empty{text-align:center;padding:36px 20px;color:var(--text2);font-size:14px;line-height:1.7}
+.empty{text-align:center;padding:48px 20px;color:var(--text2);font-size:14px;line-height:1.8}
 </style>
 </head>
 <body>
@@ -127,13 +148,21 @@ const LV=['帯広','大井','船橋','浦和','川崎','姫路','岩手','門別
 const DAYS=['日','月','火','水','木','金','土'];
 const DNAMES=['日曜','月曜','火曜','水曜','木曜','金曜','土曜'];
 
-const CLS2PO={'t':0,'h':1,'m':2,'l':3,'s':4,'x':5};
+// Netkeiba place codes → venue names
+const PCODES = {
+  '01':'札幌','02':'函館','03':'福島','04':'新潟','05':'中山',
+  '06':'東京','07':'中京','08':'京都','09':'阪神','10':'小倉',
+  '30':'門別','32':'岩手','33':'岩手','35':'新潟','39':'浦和',
+  '40':'船橋','41':'大井','42':'川崎','43':'金沢','44':'笠松',
+  '45':'名古屋','47':'高知','48':'佐賀','51':'姫路','54':'帯広'
+};
+
 const R2C={'◎推奨':'t','◎':'h','〇':'m','▲':'l','▲/◎':'l','△':'s','×':'x','×/◎':'x','×/▲':'x'};
+const TAG={'t':'◎推奨','h':'◎','m':'〇','l':'▲','s':'△','x':'×','nd':'─'};
 function rc(r){return R2C[r]||'s';}
-function po(r){const m={0:0,'◎推奨':0,'◎':1,'〇':2,'▲':3,'▲/◎':3,'△':4,'×':5,'×/◎':5,'×/▲':5};return m[r]!==undefined?m[r]:9;}
+function po(r){const m={'◎推奨':0,'◎':1,'〇':2,'▲':3,'▲/◎':3,'△':4,'×':5,'×/◎':5,'×/▲':5};return m[r]!==undefined?m[r]:9;}
 
-const TAG={'t':'◎推奨','h':'◎','m':'〇','l':'▲','s':'△','x':'×','n':'─'};
-
+// ===== AI DATA =====
 const JD={
 '札幌':{前半:{芝:{rv:'120-137%',items:[{d:'1200m',r:'〇',t:'ワイド①→馬連②→複勝③→三連複'},{d:'1500m',r:'▲',t:'枠連①→馬単②→(三連単)'},{d:'1800m以上',r:'▲',t:'ワイド①→馬連②→(単勝)'}]},ダート:{rv:'102-131%',items:[{d:'1000m',r:'◎',t:'ワイド①→馬連②→単勝③'},{d:'1700m以上',r:'▲',t:'ワイド①→枠連②→(三連複→三連単)'}]},特殊:{items:[{d:'新馬戦',r:'△',t:'馬単→馬連',n:'試行回数少なく期待できない'}]}},後半:{芝:{rv:'99-102%',items:[{d:'1200m',r:'▲',t:'馬単①→(単勝)'},{d:'1500m',r:'△',t:'ワイド'},{d:'1800m以上',r:'▲',t:'ワイド①→馬連②→(三連複)'}]},ダート:{rv:'115-175%',items:[{d:'1000m',r:'◎',t:'枠連①→ワイド②→三連複→(馬連→馬単)'},{d:'1700m以上',r:'◎',t:'ワイド①→馬単②→(単勝→三連単)'}]}}},
 '函館':{前半:{芝:{rv:'130-136%',items:[{d:'全距離',r:'◎',t:'単勝→馬単→馬連→枠連→(ワイド)'}]},ダート:{rv:'127-135%',items:[{d:'全距離',r:'◎',t:'枠連→馬単→(三連複→単勝)'}]},特殊:{items:[{d:'新馬戦',r:'×',t:'見送り',n:'63-79%'}]}},後半:{芝:{rv:'112-118%',items:[{d:'全距離',r:'〇',t:'枠連→馬単→馬連→(三連単→ワイド)'}]},ダート:{rv:'125-135%',items:[{d:'全距離',r:'◎',t:'ワイド→馬連→複勝→三連複→馬単→(枠連)'}]}}},
@@ -141,38 +170,218 @@ const JD={
 '新潟':{前半:{芝:{rv:'116-123%',items:[{d:'1000m',r:'▲',t:'馬連①→枠連②→三連複③→ワイド④'},{d:'1200m',r:'×',t:'ワイド①'},{d:'1400m',r:'◎',t:'ワイド①→馬連②→三連単→三連複'},{d:'1600m',r:'▲',t:'枠連①→馬連'},{d:'1800m',r:'×',t:'ワイド①'},{d:'2000m以上',r:'◎',t:'単勝①→三連複②→(三連単→ワイド)'}]},ダート:{rv:'94-97%',items:[{d:'1200m',r:'◎',t:'単勝①→枠連②→(三連複)'},{d:'1800m以上',r:'×',t:'無し'}]},特殊:{items:[{d:'新馬戦',r:'×',t:'無し'},{d:'障害戦',r:'◎',t:'ワイド①→(三連複)'}]}},後半:{芝:{rv:'119-135%',items:[{d:'1000m',r:'▲',t:'複勝①→ワイド②'},{d:'1200m',r:'×',t:'ワイド①'},{d:'1400m',r:'◎',t:'複勝①→馬連②→枠連③→三連複④'},{d:'1600m',r:'◎',t:'枠連①→馬連②→ワイド③→馬単④',n:'三連はNG'},{d:'1800m',r:'◎',t:'ワイド①→三連複②→馬単③→単勝'},{d:'2000m以上',r:'×',t:'枠連①'}]},ダート:{rv:'122-130%',items:[{d:'1200m',r:'◎',t:'単勝①→馬単②→ワイド③→馬連'},{d:'1800m以上',r:'〇',t:'枠連①'}]}}},
 '中山':{前半:{芝:{rv:'112%',items:[{d:'1200m',r:'▲',t:'枠連①→単勝②→馬連'},{d:'1600m',r:'×',t:'無し'},{d:'1800m',r:'◎',t:'三連複①→馬単②→枠連③→(三連単)'},{d:'2000m以上',r:'▲',t:'馬連①→ワイド②→枠連'}]},ダート:{rv:'101%',items:[{d:'1200m',r:'△',t:'枠連→(馬連→単勝)'},{d:'1800m以上',r:'△',t:'三連複'}]},特殊:{items:[{d:'新馬戦',r:'×',t:'無し'},{d:'障害戦',r:'×',t:'(馬単)'}]}},後半:{芝:{rv:'110%',items:[{d:'1200m',r:'◎推奨',t:'馬連①→ワイド②→複勝③→馬単④→(三連複)'},{d:'1600m',r:'▲',t:'単勝①→ワイド②'},{d:'1800m',r:'◎推奨',t:'単勝①→ワイド②→三連複③→馬単④→馬連→(三連単)'},{d:'2000m以上',r:'△',t:'ワイド①→三連複'}]},ダート:{rv:'114%',items:[{d:'1200m',r:'△',t:'ワイド①→三連複'},{d:'1800m',r:'〇',t:'ワイド①→枠連②→馬連③'},{d:'2400m以上',r:'△',t:'複勝①→三連複②'}]}}},
 '東京':{前半:{芝:{rv:'118-122%',items:[{d:'1400m',r:'▲',t:'枠連①→馬連②'},{d:'1600m',r:'▲',t:'三連複①→馬連②→馬単③'},{d:'1800m',r:'〇',t:'三連複①→単勝②→三連単③→馬単'},{d:'2000m以上',r:'〇',t:'ワイド①→単勝②→馬連③→(馬単)'}]},ダート:{rv:'103-106%',items:[{d:'1400m以下',r:'△',t:'ワイド'},{d:'1600m',r:'×',t:'無し'},{d:'1800m以上',r:'◎',t:'馬単①→ワイド②→馬連③'}]},特殊:{items:[{d:'新馬戦',r:'×',t:'無し'},{d:'障害戦',r:'×',t:'枠連①'}]}},後半:{芝:{rv:'126-136%',items:[{d:'1400m',r:'〇',t:'ワイド①'},{d:'1600m',r:'△',t:'三連複①→ワイド②'},{d:'1800m',r:'◎',t:'ワイド①→馬連②→単勝③→馬単'},{d:'2000m以上',r:'〇',t:'馬単①→三連複②→馬連'}]},ダート:{rv:'106-112%',items:[{d:'1400m以下',r:'△',t:'ワイド①→複勝'},{d:'1600m',r:'▲',t:'馬連①→ワイド②→馬単③'},{d:'1800m以上',r:'〇',t:'単勝→馬単→馬連'}]}}},
-'京都':{前半:{芝:{rv:'112-120%',items:[{d:'1200m',r:'〇',t:'ワイド→馬単'},{d:'1400m',r:'◎推奨',t:'馬単①→三連複②→馬連③→ワイド④→(三連単)'},{d:'1600m',r:'◎',t:'枠連①→ワイド②→(三連単)'},{d:'1800m以上',r:'▲',t:'馬単①→三連複②'}]},ダート:{rv:'93-97%',items:[{d:'1200m',r:'〇',t:'馬単①→馬連②'},{d:'1400m',r:'◎',t:'ワイド①→単勝②→三連複→三連単'},{d:'1800m以上',r:'×',t:'無し'}]},特殊:{items:[{d:'新馬戦',r:'△',t:'(ワイド→馬連)'},{d:'障害戦',r:'▲',t:'単勝①→(三連単)'}]}},後半:{芝:{rv:'119-128%',items:[{d:'1200m',r:'◎',t:'枠連①→馬連②'},{d:'1400m',r:'〇',t:'三連複①→ワイド②'},{d:'1600m',r:'◎推奨',t:'枠連①→単勝②→ワイド③→馬単④→馬連'},{d:'1800m以上',r:'▲/◎',t:'7R-9R▲:ワイド①→枠連  /  10R以降◎推奨:ワイド①→馬連②→三連複③→複勝④→枠連⑤→馬単',n:'10R以降に集中'}]},ダート:{rv:'110-114%',items:[{d:'1200m',r:'〇',t:'ワイド①→馬連②→三連複'},{d:'1400m',r:'◎推奨',t:'ワイド①→三連複②→馬連→(三連単)'},{d:'1800m以上',r:'▲',t:'単勝①→ワイド②→(三連複)'}]}}},
+'京都':{前半:{芝:{rv:'112-120%',items:[{d:'1200m',r:'〇',t:'ワイド→馬単'},{d:'1400m',r:'◎推奨',t:'馬単①→三連複②→馬連③→ワイド④→(三連単)'},{d:'1600m',r:'◎',t:'枠連①→ワイド②→(三連単)'},{d:'1800m以上',r:'▲',t:'馬単①→三連複②'}]},ダート:{rv:'93-97%',items:[{d:'1200m',r:'〇',t:'馬単①→馬連②'},{d:'1400m',r:'◎',t:'ワイド①→単勝②→三連複→三連単'},{d:'1800m以上',r:'×',t:'無し'}]},特殊:{items:[{d:'新馬戦',r:'△',t:'(ワイド→馬連)'},{d:'障害戦',r:'▲',t:'単勝①→(三連単)'}]}},後半:{芝:{rv:'119-128%',items:[{d:'1200m',r:'◎',t:'枠連①→馬連②'},{d:'1400m',r:'〇',t:'三連複①→ワイド②'},{d:'1600m',r:'◎推奨',t:'枠連①→単勝②→ワイド③→馬単④→馬連'},{d:'1800m以上',r:'▲/◎',t:'7R-9R▲:ワイド①→枠連  /  10R以降◎:ワイド①→馬連②→三連複③→複勝④→枠連⑤→馬単',n:'10R以降に集中'}]},ダート:{rv:'110-114%',items:[{d:'1200m',r:'〇',t:'ワイド①→馬連②→三連複'},{d:'1400m',r:'◎推奨',t:'ワイド①→三連複②→馬連→(三連単)'},{d:'1800m以上',r:'▲',t:'単勝①→ワイド②→(三連複)'}]}}},
 '中京':{前半:{芝:{rv:'114-127%',items:[{d:'1200m',r:'▲',t:'馬単①→枠連①'},{d:'1400m',r:'▲',t:'馬連①'},{d:'1600m',r:'◎',t:'単勝①→馬単②→ワイド③→枠連④→(三連単)'},{d:'2000m',r:'▲',t:'単勝①→馬連②→馬単'},{d:'2200m以上',r:'◎',t:'ワイド①→三連複②→枠連③'}]},ダート:{rv:'103-108%',items:[{d:'1200m',r:'◎',t:'馬連①→ワイド②→馬単③'},{d:'1400m',r:'▲',t:'馬単①→ワイド②'},{d:'1800m以上',r:'△',t:'ワイド①'}]},特殊:{items:[{d:'障害戦',r:'▲',t:'馬単①'}]}},後半:{芝:{rv:'124-134%',items:[{d:'1200m',r:'〇',t:'ワイド①→単勝②→馬連③'},{d:'1400m',r:'〇',t:'複勝①→ワイド②→枠連③→馬単'},{d:'1600m',r:'▲',t:'馬連①'},{d:'2000m',r:'▲',t:'枠連①→ワイド②'},{d:'2200m以上',r:'◎推奨',t:'馬単①→ワイド②→枠連③→単勝④'}]},ダート:{rv:'115-119%',items:[{d:'1200m',r:'◎',t:'枠連①→単勝②→馬単③→(馬連→三連複)'},{d:'1400m',r:'◎推奨',t:'枠連①→ワイド②→馬連③→(単勝)'},{d:'1800m以上',r:'▲',t:'単勝①'}]}}},
 '阪神':{前半:{芝:{rv:'111%',items:[{d:'1200m',r:'◎',t:'枠連①→馬単②→三連複③→ワイド④→(三連単)'},{d:'1400m',r:'◎',t:'ワイド①→馬単②→三連単③→枠連④→馬連⑤'},{d:'1600m',r:'◎',t:'単勝①→馬単②→ワイド③→馬連④'},{d:'1800m以上',r:'▲',t:'枠連①'}]},ダート:{rv:'115-118%',items:[{d:'1200m',r:'〇',t:'三連複①→枠連②→単勝③→(馬単)'},{d:'1400m',r:'▲',t:'ワイド①'},{d:'1800m以上',r:'×',t:'(ワイド)'}]},特殊:{items:[{d:'新馬戦',r:'×',t:'無し'},{d:'障害戦',r:'×',t:'無し'}]}},後半:{芝:{rv:'105%',items:[{d:'1200m',r:'◎',t:'三連複①→ワイド②→馬連③→(馬単)'},{d:'1400m',r:'◎推奨',t:'ワイド①→枠連②→単勝③→三連複'},{d:'1600m',r:'▲',t:'ワイド①→単勝②→馬連③'},{d:'1800m以上',r:'△',t:'単勝①'}]},ダート:{rv:'108%',items:[{d:'1200m',r:'◎推奨',t:'ワイド①→単勝②→枠連③→馬連'},{d:'1400m',r:'×/◎',t:'7R-9R:見送り  /  10R以降◎:枠連①→馬連②→馬単③'},{d:'1800m',r:'×/▲',t:'7R-9R:見送り  /  10R以降▲:単勝①→枠連'},{d:'2000m以上',r:'×',t:'無し'}]}}},
 '小倉':{前半:{芝:{rv:'110-114%',items:[{d:'1200m',r:'〇',t:'ワイド①→枠連②→馬連→(三連単→単勝)'},{d:'1800m',r:'◎',t:'枠連①→ワイド②→馬連③→三連複④'},{d:'2000m以上',r:'▲',t:'単勝①→三連複②→枠連③'}]},ダート:{rv:'110-119%',items:[{d:'1000m',r:'◎',t:'ワイド①→単勝②→三連複③→(三連単)'},{d:'1700m以上',r:'◎',t:'ワイド①→枠連②→単勝③→(馬連)'}]},特殊:{items:[{d:'新馬戦',r:'×',t:'無し'},{d:'障害戦',r:'▲',t:'単勝①→枠連②→(馬連)'}]}},後半:{芝:{rv:'108-110%',items:[{d:'1200m',r:'◎',t:'単勝①→三連複②→ワイド③→複勝→馬連'},{d:'1800m',r:'×',t:'無し'},{d:'2000m以上',r:'△',t:'ワイド①→単勝②'}]},ダート:{rv:'105-117%',items:[{d:'1000m',r:'△',t:'馬連①→馬単②'},{d:'1700m以上',r:'×',t:'(ワイド-枠連)'}]}}}
 };
 const LD={
-'帯広':{ob:true,note:'ばんえい競馬。曜日と頭数で買い方が大きく異なる。前半は売上少なくオッズが動きやすい。',segs:['前半','中盤','後半'],data:{'土':{前半:[{d:'3Rまで',r:'×',t:'ケン'},{d:'4R以降 8頭以下',r:'▲',t:'馬単①→三連単'},{d:'4R以降 9頭',r:'▲',t:'単勝①→三連複②→枠連'},{d:'4R以降 10頭',r:'▲',t:'ワイド①→(三連単)'}],中盤:[{d:'8頭以下',r:'△',t:'無し'},{d:'9頭',r:'△',t:'馬単①'},{d:'10頭',r:'〇',t:'馬単①→ワイド②→馬連'}],後半:[{d:'8頭以下',r:'◎',t:'三連複①→ワイド②→馬連③'},{d:'9頭',r:'×',t:'無し'},{d:'10頭',r:'△',t:'馬単①'}]},'日':{前半:[{d:'3R 9頭',r:'▲',t:'ワイド①→枠連②→三連複③→(馬連)'},{d:'3R 10頭',r:'△',t:'(ワイド)'},{d:'4R以降 9頭',r:'▲',t:'馬単①→枠連②→(馬連)'},{d:'4R以降 10頭',r:'▲',t:'ワイド①→三連複②'}],中盤:[{d:'9頭',r:'▲',t:'単勝①→馬単②→三連単③→ワイド',n:'試行回数少ない'},{d:'10頭',r:'×',t:'無し'}],後半:[{d:'8頭以下',r:'▲',t:'単勝①'},{d:'9頭',r:'▲',t:'三連単①→ワイド②→三連複'},{d:'10頭',r:'▲',t:'ワイド①→枠連②→三連単③→馬単④'}]},'月':{前半:[{d:'3Rまで',r:'×',t:'ケン'},{d:'4R以降 8頭以下',r:'×',t:'無し'},{d:'4R以降 9頭以上',r:'▲',t:'単勝①→ワイド②'}],中盤:[{d:'8頭以下',r:'×',t:'無し'},{d:'9頭以上',r:'△',t:'(枠連)'}],後半:[{d:'8頭以下',r:'×',t:'無し'},{d:'9頭以上',r:'▲',t:'枠連①→馬連②→馬単'}]},'平日':{前半:[{d:'3R 8頭以下',r:'×',t:'無し'},{d:'3R 9頭以上',r:'▲',t:'単勝①→馬連②'},{d:'4R以降 8頭以下',r:'×',t:'無し'},{d:'4R以降 9頭以上',r:'◎',t:'三連複①→ワイド②→馬単③→馬連④→(三連単)'}],中盤:[{d:'8頭以下',r:'△',t:'ワイド①'},{d:'9頭以上',r:'×',t:'無し',n:'Bクラス'}],後半:[{d:'8頭以下',r:'◎',t:'三連複①→ワイド②'},{d:'9頭以上',r:'▲',t:'単勝①'}]}}},
-'大井':{note:'前半は期待値低い。後半10R以降が最良。カチコチオッズは回避。',segs:['前半','中盤','後半','マイナー'],data:{前半:[{d:'1200m',r:'×',t:'無し'},{d:'1400m 10頭以下',r:'▲',t:'枠連①→馬連②→枠単'},{d:'1400m 12頭以上',r:'▲',t:'ワイド①→三連複②→馬単'},{d:'1600m',r:'×',t:'無し'}],中盤:[{d:'1200m',r:'▲',t:'単勝①→三連複②→(三連単)'},{d:'1400m',r:'▲',t:'馬連①→枠連②→馬単'},{d:'1600m',r:'▲',t:'ワイド①'}],後半:[{d:'1200m',r:'〇',t:'単勝①→枠単②→馬単③',n:'最終R回避'},{d:'1400m',r:'◎',t:'三連複①→三連単②→ワイド③'},{d:'1600m',r:'△',t:'枠連①→馬連②'}],マイナー:[{d:'1000m',r:'◎',t:'馬連①→単勝②→枠連③→ワイド④→三連複'},{d:'1650-1700m',r:'〇',t:'ワイド①→三連複②→馬単③'},{d:'1800m',r:'▲',t:'ワイド①'},{d:'2000m以上',r:'◎',t:'単勝①→三連複②→ワイド③→枠単→馬単'}]}},
-'船橋':{note:'南関で個別成績が最良。11頭以上が本命。中盤(7-10R)が最良。',segs:['前半','中盤','後半'],data:{前半:[{d:'1000m',r:'×',t:'無し'},{d:'1200m',r:'△',t:'(単勝)'},{d:'1500m以上 11頭以上',r:'△',t:'馬単①'}],中盤:[{d:'1000m',r:'◎',t:'枠連①→馬単②→枠単'},{d:'1200m 11頭以上',r:'◎推奨',t:'馬単①→枠単②→ワイド③→枠連'},{d:'1500m以上 11頭以上',r:'◎推奨',t:'枠連①→馬単②→ワイド③→馬連④'}],後半:[{d:'1000m',r:'◎',t:'ワイド①→馬連②→三連複③'},{d:'1200m',r:'▲',t:'ワイド①'},{d:'1500m以上 11頭以上',r:'▲',t:'単勝①→ワイド②'}]}},
-'浦和':{note:'南関で最も成績悪く検証中。中盤(7-10R)が最良。',segs:['前半','中盤','後半'],data:{前半:[{d:'800m',r:'▲',t:'馬単①→ワイド②'},{d:'1300-1400m',r:'×',t:'無し'},{d:'1500m以上',r:'▲',t:'ワイド①'}],中盤:[{d:'800m',r:'▲',t:'単勝①→三連複'},{d:'1300-1400m',r:'△',t:'ワイド'},{d:'1500m',r:'▲',t:'複勝①→枠連②→馬単③→馬連'},{d:'1600m以上',r:'◎推奨',t:'枠連①→馬単②→馬連③→(三連単)'}],後半:[{d:'800m',r:'◎',t:'ワイド①→枠単②→枠連③→馬連④→三連単'},{d:'1400m',r:'〇',t:'ワイド①→単勝②'},{d:'1500m',r:'△',t:'ワイド①'},{d:'1600m以上',r:'△',t:'ワイド①'}]}},
-'川崎':{note:'中盤(7-9R)が最良。南関共通は不向き。1400mは的中率高いが回収率悪い。',segs:['前半','中盤','後半'],data:{前半:[{d:'900m',r:'△',t:'無し'},{d:'1400m',r:'▲',t:'単勝①'},{d:'1500m',r:'〇',t:'馬単①→馬連'},{d:'1600m以上',r:'〇',t:'馬単①→枠単②'}],中盤:[{d:'900m',r:'〇',t:'単勝①→枠単①'},{d:'1400m',r:'△',t:'単勝①'},{d:'1500m',r:'▲',t:'三連複①→ワイド②→枠単'},{d:'1600m',r:'◎推奨',t:'枠連①→枠単②→単勝③→馬単④→馬連⑤'},{d:'2000m以上',r:'◎推奨',t:'ワイド①→枠連②→枠単③→馬単'}],後半:[{d:'900m',r:'〇',t:'馬単①→馬連②'},{d:'1400m',r:'△',t:'単勝①'},{d:'1500m',r:'〇',t:'単勝①→馬単②→枠連→枠単'},{d:'1600m',r:'〇',t:'枠単①→枠連②→(単勝)'},{d:'2000m以上',r:'◎',t:'三連複①→複勝②→ワイド③→三連単④'}]}},
-'姫路':{note:'開催が非常に少なく信頼性低い。',segs:['前半','後半'],data:{前半:[{d:'800m',r:'△',t:'馬単①→(馬連)'},{d:'1400m',r:'×',t:'無し'},{d:'1500m',r:'〇',t:'単勝①→三連複②→枠連③→(馬単)'},{d:'1800m以上',r:'△',t:'(三連単)'}],後半:[{d:'800m',r:'△',t:'馬単①→(馬連)'},{d:'1400m',r:'▲',t:'単勝①→ワイド②→三連複③'},{d:'1500m',r:'〇',t:'単勝①→三連複②→枠連③→(馬単)'},{d:'1800m以上',r:'△',t:'(三連単)'}]}},
-'岩手':{iw:true,note:'水沢は共通買いが成績良い。盛岡は開催待ち。',segs:['前半','中盤','後半'],data:{共通:{前半:[{d:'1200m',r:'△',t:'枠連①'},{d:'他距離',r:'×',t:'無し'}],中盤:[{d:'1400m',r:'△',t:'馬連①→枠連②'},{d:'1600m以上',r:'△',t:'ワイド①'}],後半:[{d:'1300m',r:'〇',t:'ワイド①→三連複②'},{d:'1400m',r:'△',t:'(三連単)'},{d:'1600m以上',r:'△',t:'枠連①'}]},水沢:{前半:[{d:'全距離',r:'×',t:'ケン'}],中盤:[{d:'1600m以上',r:'▲',t:'馬単→枠連→三連複',n:'実馬券では検証終了'}],後半:[{d:'1600m以上',r:'▲',t:'枠連',n:'実馬券では検証終了'}]},盛岡:{前半:[{d:'全距離',r:'×',t:'ケン'}],中盤:[{d:'1400m',r:'▲',t:'ワイド①→馬連②→三連単'},{d:'1600m以上',r:'▲',t:'ワイド①→単勝②→三連単'}],後半:[{d:'全距離',r:'×',t:'ケン'}]}}},
-'門別':{note:'配当安く小口検証のみ。前半のほうが配当良い。',segs:['前半','中盤','後半'],data:{前半:[{d:'1000m以下',r:'〇',t:'ワイド①→三連複②'},{d:'1100m',r:'×',t:'(馬単)'},{d:'1200m',r:'▲',t:'単勝①→ワイド'},{d:'1500m以上',r:'〇',t:'単勝①→枠連②'}],中盤:[{d:'1100m以下',r:'▲',t:'ワイド'},{d:'1200m',r:'×',t:'無し'},{d:'1500m以上',r:'△',t:'単勝①'}],後半:[{d:'1100m以下',r:'△',t:'無し'},{d:'1200m',r:'△',t:'ワイド①'},{d:'1500m以上',r:'◎',t:'馬単①→単勝②→馬連③'}]}},
-'名古屋':{note:'弥富移転後データのみ。前半は全距離見送り。',segs:['前半','後半'],data:{前半:[{d:'全距離',r:'×',t:'無し',n:'期待値低いため全距離見送り'}],後半:[{d:'920m',r:'△',t:'単勝①'},{d:'1400m',r:'◎推奨',t:'馬単①→三連複②→馬連③→(枠連→ワイド)'},{d:'1500m 9Rまで',r:'▲',t:'三連複①→馬連②'},{d:'1500m 10R以降',r:'▲',t:'三連複'},{d:'1700m',r:'▲',t:'三連複①→馬単②'},{d:'2000m以上',r:'◎',t:'ワイド①→枠連②→複勝③'}]}},
-'笠松':{fl:true,note:'不可解なレース中心の仮説検証段階。低配当馬券は手動選択推奨。',data:[{d:'1400m 7頭以下(前半8Rまで)',r:'△',t:'7頭以下限定で検証中',n:'回収率84-85%'},{d:'1400m 9頭以上',r:'×',t:'見送り推奨',n:'回収率80-81%'},{d:'1600m以上 8頭以下',r:'〇',t:'ワイド①→(三連単)',n:'回収率101-106%'},{d:'1600m以上 9頭以上',r:'〇',t:'枠連①→(馬連)',n:'回収率104-108%'}]},
-'金沢':{note:'前半8Rまでは配当安く成績悪い。AI性能は地方全体では良い。',segs:['前半','中盤','後半'],data:{前半:[{d:'1400m以下',r:'△',t:'枠単①'},{d:'1500m以上',r:'△',t:'単勝①'}],中盤:[{d:'1400m以下',r:'◎',t:'単勝①→枠連②→枠単③'},{d:'1500m',r:'△',t:'単勝①'},{d:'1700m以上',r:'×',t:'三連複①'}],後半:[{d:'1400m以下',r:'△',t:'ワイド'},{d:'1500m',r:'▲',t:'単勝①→枠単②→馬単'},{d:'1700m以上',r:'△',t:'単勝①→ワイド②'}]}},
-'高知':{ko:true,note:'AIモデル性能低く小口検証のみ。',data:{通常:[{d:'1300m',r:'△',t:'単勝①',n:'沢山当たるが単勝しか浮かない'},{d:'1400m',r:'×',t:'無し',n:'買えば負ける'},{d:'1600m',r:'△',t:'馬連①'}],ファイナル:[{d:'800m',r:'△',t:'適宜判断',n:'4年間で4回のみ'},{d:'1300m',r:'△',t:'複勝①→三連複②→(ワイド)'},{d:'1400m',r:'〇',t:'複勝①→単勝②→(ワイド)'},{d:'1600m',r:'▲',t:'馬連①→単勝②→(ワイド)'}]}},
-'佐賀':{note:'9R以降の1300m・1700m+のAI性能はかなり高い。前半8Rまでは全見送り。',segs:['前半','中盤','後半'],data:{前半:[{d:'全距離',r:'×',t:'無し',n:'配当安く見送り'}],中盤:[{d:'900m',r:'×',t:'無し'},{d:'1300m',r:'◎',t:'単勝①→ワイド②→三連複③→馬連④→(馬単)'},{d:'1400m',r:'△',t:'無し'},{d:'1700m以上',r:'▲',t:'単勝①→馬単②→馬連③',n:'1800mは単複のみ'}],後半:[{d:'900m',r:'▲',t:'ワイド①→単勝②→三連複③'},{d:'1300m',r:'×',t:'ワイド①'},{d:'1400m',r:'×',t:'ワイド①'},{d:'1700m以上',r:'◎',t:'枠連①→三連複②→馬連③→ワイド④→単勝→(三連単)'}]}}
+'帯広':{ob:true,note:'ばんえい競馬。曜日と頭数で買い方が大きく異なる。',segs:['前半','中盤','後半'],data:{'土':{前半:[{d:'3Rまで',r:'×',t:'ケン'},{d:'4R以降 8頭以下',r:'▲',t:'馬単①→三連単'},{d:'4R以降 9頭',r:'▲',t:'単勝①→三連複②→枠連'},{d:'4R以降 10頭',r:'▲',t:'ワイド①→(三連単)'}],中盤:[{d:'8頭以下',r:'△',t:'無し'},{d:'9頭',r:'△',t:'馬単①'},{d:'10頭',r:'〇',t:'馬単①→ワイド②→馬連'}],後半:[{d:'8頭以下',r:'◎',t:'三連複①→ワイド②→馬連③'},{d:'9頭',r:'×',t:'無し'},{d:'10頭',r:'△',t:'馬単①'}]},'日':{前半:[{d:'3R 9頭',r:'▲',t:'ワイド①→枠連②→三連複③'},{d:'4R以降 9頭',r:'▲',t:'馬単①→枠連②'},{d:'4R以降 10頭',r:'▲',t:'ワイド①→三連複②'}],中盤:[{d:'9頭',r:'▲',t:'単勝①→馬単②→三連単③→ワイド'},{d:'10頭',r:'×',t:'無し'}],後半:[{d:'8頭以下',r:'▲',t:'単勝①'},{d:'9頭',r:'▲',t:'三連単①→ワイド②→三連複'},{d:'10頭',r:'▲',t:'ワイド①→枠連②→三連単③→馬単④'}]},'月':{前半:[{d:'3Rまで',r:'×',t:'ケン'},{d:'4R以降 9頭以上',r:'▲',t:'単勝①→ワイド②'}],中盤:[{d:'9頭以上',r:'△',t:'(枠連)'}],後半:[{d:'9頭以上',r:'▲',t:'枠連①→馬連②→馬単'}]},'平日':{前半:[{d:'4R以降 9頭以上',r:'◎',t:'三連複①→ワイド②→馬単③→馬連④→(三連単)'}],中盤:[{d:'8頭以下',r:'△',t:'ワイド①'}],後半:[{d:'8頭以下',r:'◎',t:'三連複①→ワイド②'},{d:'9頭以上',r:'▲',t:'単勝①'}]}}},
+'大井':{note:'後半10R以降が最良。',segs:['前半','中盤','後半','マイナー'],data:{前半:[{d:'1400m 10頭以下',r:'▲',t:'枠連①→馬連②→枠単'},{d:'1400m 12頭以上',r:'▲',t:'ワイド①→三連複②→馬単'}],中盤:[{d:'1200m',r:'▲',t:'単勝①→三連複②'},{d:'1400m',r:'▲',t:'馬連①→枠連②→馬単'},{d:'1600m',r:'▲',t:'ワイド①'}],後半:[{d:'1200m',r:'〇',t:'単勝①→枠単②→馬単③',n:'最終R回避'},{d:'1400m',r:'◎',t:'三連複①→三連単②→ワイド③'},{d:'1600m',r:'△',t:'枠連①→馬連②'}],マイナー:[{d:'1000m',r:'◎',t:'馬連①→単勝②→枠連③→ワイド④→三連複'},{d:'1650-1700m',r:'〇',t:'ワイド①→三連複②→馬単③'},{d:'2000m以上',r:'◎',t:'単勝①→三連複②→ワイド③→枠単→馬単'}]}},
+'船橋':{note:'中盤(7-10R)が最良。11頭以上が本命。',segs:['前半','中盤','後半'],data:{前半:[{d:'1000m',r:'×',t:'無し'},{d:'1200m',r:'△',t:'(単勝)'},{d:'1500m以上 11頭以上',r:'△',t:'馬単①'}],中盤:[{d:'1000m',r:'◎',t:'枠連①→馬単②→枠単'},{d:'1200m 11頭以上',r:'◎推奨',t:'馬単①→枠単②→ワイド③→枠連'},{d:'1500m以上 11頭以上',r:'◎推奨',t:'枠連①→馬単②→ワイド③→馬連④'}],後半:[{d:'1000m',r:'◎',t:'ワイド①→馬連②→三連複③'},{d:'1200m',r:'▲',t:'ワイド①'},{d:'1500m以上 11頭以上',r:'▲',t:'単勝①→ワイド②'}]}},
+'浦和':{note:'中盤(7-10R)が最良。',segs:['前半','中盤','後半'],data:{前半:[{d:'800m',r:'▲',t:'馬単①→ワイド②'},{d:'1500m以上',r:'▲',t:'ワイド①'}],中盤:[{d:'800m',r:'▲',t:'単勝①→三連複'},{d:'1500m',r:'▲',t:'複勝①→枠連②→馬単③→馬連'},{d:'1600m以上',r:'◎推奨',t:'枠連①→馬単②→馬連③→(三連単)'}],後半:[{d:'800m',r:'◎',t:'ワイド①→枠単②→枠連③→馬連④→三連単'},{d:'1400m',r:'〇',t:'ワイド①→単勝②'},{d:'1600m以上',r:'△',t:'ワイド①'}]}},
+'川崎':{note:'中盤(7-9R)が最良。',segs:['前半','中盤','後半'],data:{前半:[{d:'1400m',r:'▲',t:'単勝①'},{d:'1500m',r:'〇',t:'馬単①→馬連'},{d:'1600m以上',r:'〇',t:'馬単①→枠単②'}],中盤:[{d:'900m',r:'〇',t:'単勝①→枠単①'},{d:'1600m',r:'◎推奨',t:'枠連①→枠単②→単勝③→馬単④→馬連⑤'},{d:'2000m以上',r:'◎推奨',t:'ワイド①→枠連②→枠単③→馬単'}],後半:[{d:'900m',r:'〇',t:'馬単①→馬連②'},{d:'1500m',r:'〇',t:'単勝①→馬単②→枠連→枠単'},{d:'2000m以上',r:'◎',t:'三連複①→複勝②→ワイド③→三連単④'}]}},
+'姫路':{note:'開催が非常に少なく信頼性低い。',segs:['前半','後半'],data:{前半:[{d:'1500m',r:'〇',t:'単勝①→三連複②→枠連③→(馬単)'}],後半:[{d:'1400m',r:'▲',t:'単勝①→ワイド②→三連複③'},{d:'1500m',r:'〇',t:'単勝①→三連複②→枠連③→(馬単)'}]}},
+'岩手':{iw:true,note:'水沢は共通買いが成績良い。',segs:['前半','中盤','後半'],data:{共通:{前半:[{d:'1200m',r:'△',t:'枠連①'}],中盤:[{d:'1400m',r:'△',t:'馬連①→枠連②'},{d:'1600m以上',r:'△',t:'ワイド①'}],後半:[{d:'1300m',r:'〇',t:'ワイド①→三連複②'},{d:'1600m以上',r:'△',t:'枠連①'}]},水沢:{前半:[{d:'全距離',r:'×',t:'ケン'}],中盤:[{d:'1600m以上',r:'▲',t:'馬単→枠連→三連複'}],後半:[{d:'1600m以上',r:'▲',t:'枠連'}]},盛岡:{前半:[{d:'全距離',r:'×',t:'ケン'}],中盤:[{d:'1400m',r:'▲',t:'ワイド①→馬連②→三連単'},{d:'1600m以上',r:'▲',t:'ワイド①→単勝②→三連単'}],後半:[{d:'全距離',r:'×',t:'ケン'}]}}},
+'門別':{note:'前半のほうが配当良い。',segs:['前半','中盤','後半'],data:{前半:[{d:'1000m以下',r:'〇',t:'ワイド①→三連複②'},{d:'1200m',r:'▲',t:'単勝①→ワイド'},{d:'1500m以上',r:'〇',t:'単勝①→枠連②'}],中盤:[{d:'1100m以下',r:'▲',t:'ワイド'},{d:'1500m以上',r:'△',t:'単勝①'}],後半:[{d:'1500m以上',r:'◎',t:'馬単①→単勝②→馬連③'}]}},
+'名古屋':{note:'前半は全距離見送り。',segs:['前半','後半'],data:{前半:[{d:'全距離',r:'×',t:'無し',n:'期待値低いため全距離見送り'}],後半:[{d:'1400m',r:'◎推奨',t:'馬単①→三連複②→馬連③→(枠連→ワイド)'},{d:'1500m',r:'▲',t:'三連複①→馬連②'},{d:'1700m',r:'▲',t:'三連複①→馬単②'},{d:'2000m以上',r:'◎',t:'ワイド①→枠連②→複勝③'}]}},
+'笠松':{fl:true,note:'仮説検証段階。',data:[{d:'1400m 7頭以下',r:'△',t:'7頭以下限定',n:'84-85%'},{d:'1600m以上 8頭以下',r:'〇',t:'ワイド①→(三連単)',n:'101-106%'},{d:'1600m以上 9頭以上',r:'〇',t:'枠連①→(馬連)',n:'104-108%'}]},
+'金沢':{note:'前半8Rまでは成績悪い。',segs:['前半','中盤','後半'],data:{前半:[{d:'全距離',r:'△',t:'枠単①'}],中盤:[{d:'1400m以下',r:'◎',t:'単勝①→枠連②→枠単③'},{d:'1700m以上',r:'×',t:'三連複①'}],後半:[{d:'1500m',r:'▲',t:'単勝①→枠単②→馬単'},{d:'1700m以上',r:'△',t:'単勝①→ワイド②'}]}},
+'高知':{ko:true,note:'AIモデル性能低く小口検証のみ。',data:{通常:[{d:'1300m',r:'△',t:'単勝①'},{d:'1400m',r:'×',t:'無し',n:'買えば負ける'},{d:'1600m',r:'△',t:'馬連①'}],ファイナル:[{d:'1300m',r:'△',t:'複勝①→三連複②→(ワイド)'},{d:'1400m',r:'〇',t:'複勝①→単勝②→(ワイド)'},{d:'1600m',r:'▲',t:'馬連①→単勝②→(ワイド)'}]}},
+'佐賀':{note:'9R以降の1300m・1700m+が最良。前半全見送り。',segs:['前半','中盤','後半'],data:{前半:[{d:'全距離',r:'×',t:'無し',n:'見送り'}],中盤:[{d:'1300m',r:'◎',t:'単勝①→ワイド②→三連複③→馬連④'},{d:'1700m以上',r:'▲',t:'単勝①→馬単②→馬連③'}],後半:[{d:'1700m以上',r:'◎',t:'枠連①→三連複②→馬連③→ワイド④→単勝→(三連単)'}]}}
 };
 
+// ===== STATE =====
 let st={mode:'jra',view:'today',venue:'福島',half:'後半',lV:'大井',lSeg:'後半',lDay:'土',lType:'通常',lSub:'共通',mr:[{r:1,d:''},{r:2,d:''},{r:3,d:''}],mh:'後半',mv:'福島'};
-let editV=null;
+let autoRaces=null; // null=未取得, 'loading', {}=データあり, 'error', 'empty'
+let hiddenVenues={jra:new Set(), local:new Set()};
 
-const td=()=>new Date().toISOString().slice(0,10);
-const lrk=()=>`kr_${td()}_${st.mode}`;
-const lvk=()=>`kv_${st.mode}`;
-function lr(){return JSON.parse(localStorage.getItem(lrk())||'{}');}
-function sr(d){localStorage.setItem(lrk(),JSON.stringify(d));}
-function lv(){return JSON.parse(localStorage.getItem(lvk())||'[]');}
-function sv(v){localStorage.setItem(lvk(),JSON.stringify(v));}
+function lv(){return hiddenVenues[st.mode];}
+const DAYS2=['日','月','火','水','木','金','土'];
+function todayDs(){const d=new Date();return String(d.getFullYear())+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0');}
 
+// ===== FETCH =====
+function renderIfToday(){if(st.view==='today'){document.getElementById('main').innerHTML=renderToday();bind();}}
+
+async function tryFetch(proxyUrl, isJson){
+  const ctrl=new AbortController();
+  const t=setTimeout(()=>ctrl.abort(),10000);
+  try{
+    const res=await fetch(proxyUrl,{signal:ctrl.signal});
+    clearTimeout(t);
+    if(!res.ok) return null;
+    if(isJson){const j=await res.json();return j.contents||null;}
+    return await res.text();
+  }catch(e){clearTimeout(t);return null;}
+}
+
+async function fetchRaces(force=false){
+  if(autoRaces&&autoRaces!=='error'&&!force) return;
+  autoRaces='loading';
+  renderIfToday();
+  const ds=todayDs();
+
+  // Try sources in order
+  const sources=[
+    // corsproxy.io → netkeiba
+    async()=>{
+      const html=await tryFetch('https://corsproxy.io/?url='+encodeURIComponent(`https://race.netkeiba.com/top/race_list.html?kaisai_date=${ds}`),false);
+      return html?parseNetkeiba(html):null;
+    },
+    // allorigins.win → netkeiba
+    async()=>{
+      const html=await tryFetch('https://api.allorigins.win/get?url='+encodeURIComponent(`https://race.netkeiba.com/top/race_list.html?kaisai_date=${ds}`),true);
+      return html?parseNetkeiba(html):null;
+    },
+    // corsproxy.io → Yahoo競馬
+    async()=>{
+      const html=await tryFetch('https://corsproxy.io/?url='+encodeURIComponent(`https://keiba.yahoo.co.jp/race/list/${ds}/`),false);
+      return html?parseYahoo(html):null;
+    },
+    // allorigins.win → Yahoo競馬
+    async()=>{
+      const html=await tryFetch('https://api.allorigins.win/get?url='+encodeURIComponent(`https://keiba.yahoo.co.jp/race/list/${ds}/`),true);
+      return html?parseYahoo(html):null;
+    },
+  ];
+
+  for(const src of sources){
+    try{
+      const parsed=await src();
+      if(parsed&&Object.keys(parsed).length>0){
+        autoRaces=parsed;
+        renderIfToday();
+        return;
+      }
+    }catch(e){}
+  }
+  autoRaces='error';
+  renderIfToday();
+}
+
+function parseDist(txt){
+  // e.g. "芝1200m", "ダ1600m", "ダート1800m", "障害3200m", "芝・外1800m"
+  const m=txt.match(/([芝ダ障])[\s・外]*(\d{3,4})/);
+  if(!m) return '';
+  if(m[1]==='芝') return '芝'+m[2]+'m';
+  if(m[1]==='ダ') return 'ダート'+m[2]+'m';
+  return '障害'+m[2]+'m';
+}
+
+function parseNetkeiba(html){
+  const doc=new DOMParser().parseFromString(html,'text/html');
+  const result={};
+
+  // Strategy A: Structured class-based parsing
+  const blocks=doc.querySelectorAll('.RaceList_DataList,.race-list-block,[class*="RaceList_Data"]');
+  blocks.forEach(block=>{
+    // Find venue name
+    const nameEl=block.querySelector('a,h2,h3,h4,[class*="Title"],[class*="Name"]');
+    if(!nameEl) return;
+    const venueTxt=nameEl.textContent.trim();
+    const venue=JV.find(v=>venueTxt.includes(v));
+    if(!venue) return;
+    result[venue]=[];
+    block.querySelectorAll('li,tr').forEach(item=>{
+      const txt=item.textContent.replace(/\s+/g,' ').trim();
+      const nm=txt.match(/^(\d+)R|(\d+)\s*R/);
+      if(!nm) return;
+      const rn=parseInt(nm[1]||nm[2]);
+      if(rn<1||rn>16) return;
+      const dist=parseDist(txt);
+      const tm=(txt.match(/(\d{1,2}:\d{2})/)||[])[1]||'';
+      if(!result[venue].find(r=>r.r===rn))
+        result[venue].push({r:rn,dist,time:tm});
+    });
+    result[venue].sort((a,b)=>a.r-b.r);
+  });
+
+  if(Object.keys(result).length>0) return result;
+
+  // Strategy B: Parse race_id from links
+  // race_id format: YYYY(4) + kaisai(2) + venue(2) + day(2) + race(2) = 12 digits
+  // venue code is at position 7-8 (index 6-7)
+  const links=[...doc.querySelectorAll('a[href*="race_id="]')];
+  links.forEach(link=>{
+    const href=link.getAttribute('href')||'';
+    // Skip position 4+2=6 digits, then capture 2-digit venue, skip 2, capture 2-digit race
+    const m=href.match(/race_id=\d{6}(\d{2})\d{2}(\d{2})/);
+    if(!m) return;
+    const venue=PCODES[m[1]];
+    const rn=parseInt(m[2]);
+    if(!venue||!JV.includes(venue)||rn<1||rn>16) return;
+    const txt=(link.textContent||'').replace(/\s+/g,' ').trim();
+    const dist=parseDist(txt);
+    const tm=(txt.match(/(\d{1,2}:\d{2})/)||[])[1]||'';
+    if(!result[venue]) result[venue]=[];
+    if(!result[venue].find(r=>r.r===rn))
+      result[venue].push({r:rn,dist,time:tm});
+  });
+  Object.values(result).forEach(races=>races.sort((a,b)=>a.r-b.r));
+
+  // Strategy C: Text-based venue detection
+  if(Object.keys(result).length===0){
+    const all=doc.body?.textContent||'';
+    JV.forEach(venue=>{
+      if(!all.includes(venue)) return;
+      // Find a container that has the venue name
+      doc.querySelectorAll('*').forEach(el=>{
+        if(el.children.length>3&&el.textContent.includes(venue)){
+          const txt=el.textContent;
+          const races=[];
+          const raceRe=/(\d+)R[^\d]*?(\d{1,2}:\d{2})[^\d]*?([芝ダ障][^\d]*\d{3,4})/g;
+          let rm;
+          while((rm=raceRe.exec(txt))!==null){
+            const rn=parseInt(rm[1]);
+            const time=rm[2];
+            const dist=parseDist(rm[3]);
+            if(rn>=1&&rn<=16&&!races.find(r=>r.r===rn))
+              races.push({r:rn,dist,time});
+          }
+          if(races.length>3&&(!result[venue]||result[venue].length<races.length)){
+            result[venue]=races.sort((a,b)=>a.r-b.r);
+          }
+        }
+      });
+    });
+  }
+
+  return result;
+}
+
+function parseYahoo(html){
+  // Yahoo競馬のレース一覧ページ
+  const doc=new DOMParser().parseFromString(html,'text/html');
+  const result={};
+  // Yahoo競馬 has tables or lists grouped by venue
+  // Try to find venue headings + race rows
+  doc.querySelectorAll('h3,h4,.venueTitle,[class*="venue"],[class*="Venue"],[class*="kaisai"]').forEach(hdr=>{
+    const venue=JV.find(v=>hdr.textContent.includes(v));
+    if(!venue) return;
+    result[venue]=[];
+    let el=hdr.nextElementSibling;
+    let sanity=0;
+    while(el&&sanity++<5){
+      el.querySelectorAll('tr,li').forEach(item=>{
+        const txt=item.textContent.replace(/\s+/g,' ').trim();
+        const nm=txt.match(/(\d+)\s*R/);
+        if(!nm) return;
+        const rn=parseInt(nm[1]);
+        if(rn<1||rn>16) return;
+        const dist=parseDist(txt);
+        const tm=(txt.match(/(\d{1,2}:\d{2})/)||[])[1]||'';
+        if(!result[venue].find(r=>r.r===rn))
+          result[venue].push({r:rn,dist,time:tm});
+      });
+      el=el.nextElementSibling;
+    }
+    result[venue].sort((a,b)=>a.r-b.r);
+    if(!result[venue].length) delete result[venue];
+  });
+  return result;
+}
+
+// ===== AI MATCHING =====
 function mDist(n,s){
   if(!n) return false;
   s=String(s).toLowerCase();
@@ -182,7 +391,6 @@ function mDist(n,s){
   const d=parseInt(s.replace(/[^\d]/g,''));
   return d&&Math.abs(n-d)<=55;
 }
-
 function getAI(venue,rn,distStr){
   const n=parseInt(String(distStr).replace(/[^\d]/g,''))||0;
   const isTurf=String(distStr).includes('芝');
@@ -190,18 +398,16 @@ function getAI(venue,rn,distStr){
   const half=rn<=6?'前半':'後半';
   let best=null;
   const upd=(item)=>{if(!best||po(item.r)<po(best.r)) best=item;};
-
   if(isJ){
     const vd=JD[venue];if(!vd) return null;
-    const hd=vd[half]||{};
-    const sd=hd[isTurf?'芝':'ダート'];
+    const sd=(vd[half]||{})[isTurf?'芝':'ダート'];
     if(sd) (sd.items||[]).forEach(i=>{if(mDist(n,i.d)) upd(i);});
-  } else {
+  }else{
     const ld=LD[venue];if(!ld) return null;
     if(ld.fl){(ld.data||[]).forEach(i=>{if(mDist(n,i.d)) upd(i);});return best;}
     if(ld.ko){((ld.data||{})[st.lType]||[]).forEach(i=>{if(mDist(n,i.d)) upd(i);});return best;}
     if(ld.ob){
-      const dk=['日','月','火','水','木','金','土'][new Date().getDay()];
+      const dk=DAYS2[new Date().getDay()];
       const rd=['土','日','月'].includes(dk)?dk:'平日';
       const sg=rn<=7?'前半':rn<=10?'中盤':'後半';
       const items=((ld.data||{})[rd]||{})[sg]||[];
@@ -209,7 +415,6 @@ function getAI(venue,rn,distStr){
     }
     if(ld.iw){
       const sg=rn<=6?'前半':rn<=9?'中盤':'後半';
-      ((ld.data||{})[st.lSub]||{})[sg]||[];
       const items=((ld.data||{})[st.lSub]||{})[sg]||[];
       items.forEach(i=>{if(mDist(n,i.d)) upd(i);});
       return best;
@@ -224,149 +429,163 @@ function getAI(venue,rn,distStr){
   return best;
 }
 
-function parseIn(s){
-  return s.split(/[,，\n\s]+/).filter(Boolean).map((p,i)=>{
-    p=p.trim();if(!p) return null;
-    const isTurf=p.includes('芝');
-    const isDirt=p.includes('ダ')||p.toLowerCase().startsWith('d');
-    const n=parseInt(p.replace(/[^\d]/g,''));
-    if(!n) return null;
-    const sf=isTurf?'芝':isDirt?'ダート':'?';
-    return {r:i+1,dist:(sf==='?'?'':sf)+n+'m',time:''};
-  }).filter(Boolean);
-}
-
-function rCard(venue,race){
-  const ai=getAI(venue,race.r,race.dist);
-  const cls=ai?rc(ai.r):'n';
-  const label=TAG[cls]||'─';
-  const showT=ai&&ai.t&&(cls==='t'||cls==='h'||cls==='m');
-  return `<div class="rrow ${cls}">
-    <div class="rmain">
-      <span class="rnum">${race.r}R</span>
-      <span class="rdist">${race.dist||'─'}</span>
-      <span class="rtag ${cls}">${label}</span>
-      ${race.time?`<span class="rtime">${race.time}</span>`:''}
-    </div>
-    ${showT?`<div class="rtkt">${ai.t}</div>`:''}
-    ${ai&&ai.n?`<div class="rnote">${ai.n}</div>`:''}
-  </div>`;
-}
-
-function renderTodaySegs(venue){
-  // Build all segments for a venue, grouped by 前半/後半
+// Segment fallback display when fetch fails
+function renderSegFallback(venue){
   const isJ=JV.includes(venue);
-  let h='';
-
-  function segRow(item,surf){
-    const cls=rc(item.r);
-    const label=TAG[cls]||'─';
-    const showT=(cls==='t'||cls==='h'||cls==='m')&&item.t&&item.t!=='無し';
-    const surfLabel=surf?`<span class="segsurf ${surf==='芝'?'turf':'dirt'}">${surf}</span>`:'';
-    return `<div class="segrow ${cls}">
-      <div class="segleft"><span class="segtag ${cls}">${label}</span></div>
-      <div class="segbody">
-        <span class="segdist">${item.d}${surfLabel}</span>
-        ${showT?`<div class="segtkt">${item.t}</div>`:''}
-        ${item.n?`<div class="segnote">${item.n}</div>`:''}
-      </div>
-    </div>`;
-  }
-
+  const vd=isJ?JD[venue]:LD[venue];
+  if(!vd) return '';
+  const S={'t':{bg:'#1a3a28',c:'#3dbf78'},'h':{bg:'#162c1e',c:'#2ea05a'},'m':{bg:'#1a2637',c:'#5090d0'},'l':{bg:'#2a2210',c:'#c07010'},'s':{bg:'#202020',c:'#666'},'x':{bg:'#1e1212',c:'#a03030'}};
+  let h=`<div class="vblock"><div class="vhdr"><span class="vname">${venue}</span><span style="font-size:10px;color:var(--text3)">期待値セグメント</span></div>`;
   if(isJ){
-    const vd=JD[venue];if(!vd) return '<div class="empty">データなし</div>';
     ['前半','後半'].forEach(half=>{
-      const cls=half==='前半'?'fh':'bh';
-      const label=half==='前半'?'前半（1〜6R）':'後半（7R〜）';
-      h+=`<div class="hdiv ${cls}">◆ ${label}</div>`;
-      const hd=vd[half]||{};
-      ['芝','ダート','特殊'].forEach(sf=>{
-        const sd=hd[sf];
-        if(!sd||!sd.items||!sd.items.length) return;
-        (sd.items).forEach(item=>{
-          const surf=(sf==='特殊')?null:sf;
-          h+=segRow(item,surf);
+      h+=`<div class="hdiv ${half==='前半'?'fh':'bh'}">◆ ${half==='前半'?'前半（1〜6R）':'後半（7R〜）'}</div>`;
+      const hd=(vd[half]||{});
+      ['芝','ダート'].forEach(sf=>{
+        const sd=hd[sf];if(!sd||!sd.items||!sd.items.length) return;
+        sd.items.forEach(item=>{
+          const cls=rc(item.r);const sv=S[cls]||S.s;
+          if(cls==='x'||cls==='s') return; // hide low-value
+          h+=`<div class="segrow ${cls}">
+            <div class="segleft"><span class="segtag ${cls}">${TAG[cls]||'─'}</span></div>
+            <div class="segbody">
+              <span class="segdist">${item.d} <span class="segsurf ${sf==='芝'?'turf':'dirt'}">${sf==='芝'?'芝':'ダ'}</span></span>
+              ${item.t&&item.t!=='無し'?`<div class="segtkt">${item.t}</div>`:''}
+            </div>
+          </div>`;
         });
       });
     });
-  } else {
-    const ld=LD[venue];if(!ld) return '<div class="empty">データなし</div>';
-    if(ld.fl){
-      h+=`<div class="hdiv fh">◆ 全セグメント</div>`;
-      (ld.data||[]).forEach(i=>h+=segRow(i,null));
-    } else if(ld.ko){
-      ['通常','ファイナル'].forEach(t=>{
-        h+=`<div class="hdiv fh">◆ ${t}</div>`;
-        ((ld.data||{})[t]||[]).forEach(i=>h+=segRow(i,null));
-      });
-    } else if(ld.ob){
-      const dk=['日','月','火','水','木','金','土'][new Date().getDay()];
-      const rd=['土','日','月'].includes(dk)?dk:'平日';
-      const segs=['前半','中盤','後半'];
-      segs.forEach(sg=>{
-        h+=`<div class="hdiv ${sg==='前半'?'fh':'bh'}">◆ ${sg} （${rd}曜）</div>`;
-        (((ld.data||{})[rd]||{})[sg]||[]).forEach(i=>h+=segRow(i,null));
-      });
-    } else if(ld.iw){
-      ['共通','水沢','盛岡'].forEach(sub=>{
-        h+=`<div class="hdiv fh" style="color:#4a6080">◆ ${sub}</div>`;
-        const segs=ld.segs||['前半','中盤','後半'];
-        segs.forEach(sg=>{
-          const items=((ld.data||{})[sub]||{})[sg]||[];
-          if(!items.length) return;
-          h+=`<div class="hdiv ${sg==='前半'?'fh':'bh'}" style="padding-left:24px">　${sg}</div>`;
-          items.forEach(i=>h+=segRow(i,null));
-        });
-      });
-    } else {
-      const segs=ld.segs||['前半','中盤','後半'];
-      segs.forEach(sg=>{
-        h+=`<div class="hdiv ${sg==='前半'?'fh':'bh'}">◆ ${sg}</div>`;
-        ((ld.data||{})[sg]||[]).forEach(i=>h+=segRow(i,null));
-      });
-    }
   }
+  h+=`</div>`;
   return h;
+}
+
+// ===== RENDER TODAY =====
+function renderRaceRow(venue,race){
+  const ai=race.dist?getAI(venue,race.r,race.dist):null;
+  const cls=ai?rc(ai.r):'nd';
+  const label=TAG[cls]||'─';
+  const showT=ai&&ai.t&&ai.t!=='無し'&&(cls==='t'||cls==='h'||cls==='m');
+  const isTurf=race.dist&&race.dist.includes('芝');
+  const isDirt=race.dist&&race.dist.includes('ダート');
+  const surfHtml=race.dist?`<span class="rsurf ${isTurf?'turf':isDirt?'dirt':''}">${isTurf?'芝':isDirt?'ダ':'─'}</span>`:'';
+  const distNum=race.dist?race.dist.replace(/[^\d]/g,'')+'m':'─';
+  return `<div class="rrow ${cls}">
+    <div class="rl">
+      <span class="rtime">${race.time||'─'}</span>
+      <span class="rnum">${race.r}R</span>
+    </div>
+    <div class="rc2">
+      <div class="rdist">${race.dist?distNum+'　'+surfHtml:'距離未取得'}<span class="rtag ${cls}" style="margin-left:6px">${label}</span></div>
+      ${showT?`<div class="rtkt">${ai.t}</div>`:''}
+      ${ai&&ai.n?`<div class="rnote">${ai.n}</div>`:''}
+    </div>
+  </div>`;
 }
 
 function renderToday(){
+  // Get venue list from fetched data or standard list
   const vList=st.mode==='jra'?JV:LV;
-  const active=lv();
+  const hidden=lv();
+
+  // Venue filter chips
+  let venuesWithData=[];
+  if(autoRaces&&autoRaces!=='loading'&&autoRaces!=='error'&&autoRaces!=='empty'){
+    venuesWithData=Object.keys(autoRaces).filter(v=>vList.includes(v));
+  }
+  const chipList=venuesWithData.length>0?venuesWithData:vList;
+
   let h=`<div class="vsel">
-    <div class="vsel-lbl">本日の開催場 ─── タップして選択（複数可）</div>
+    <div class="vsel-lbl">開催場フィルター ─── タップで表示/非表示</div>
     <div class="vchips">`;
-  vList.forEach(v=>{
-    const on=active.includes(v);
-    h+=`<div class="vc${on?' on':''}" data-av="${v}">${v}</div>`;
+  chipList.forEach(v=>{
+    const on=!hidden.has(v);
+    h+=`<div class="vc${on?' on':''}" data-hv="${v}">${v}</div>`;
   });
   h+=`</div></div>`;
 
-  if(!active.length){
-    return h+`<div class="empty" style="padding-top:48px">
-      📅 本日の開催場をタップしてください<br>
-      <span style="font-size:12px;color:var(--text3);margin-top:8px;display:block">選択した会場の期待値セグメントが<br>色分けで表示されます</span>
-    </div>`;
+  // States
+  if(autoRaces===null){
+    setTimeout(()=>fetchRaces(),0);
+    autoRaces='loading';
+    h+=`<div class="loading"><div class="spinner"></div><div class="load-txt">レース情報を取得中...</div></div>`;
+    return h;
+  }
+  if(autoRaces==='loading'){
+    h+=`<div class="loading"><div class="spinner"></div><div class="load-txt">レース情報を取得中...</div></div>`;
+    return h;
+  }
+  if(autoRaces==='error'){
+    // Fallback: show segment recommendations
+    h+=`<div style="padding:10px 14px;background:#1a1400;border-bottom:1px solid #332800">
+      <div style="font-size:12px;color:#a07020;margin-bottom:4px">⚠ レース情報の自動取得に失敗しました</div>
+      <div style="font-size:11px;color:#665010;line-height:1.5">ネット接続を確認して <button id="retryBtn" style="display:inline;padding:2px 8px;background:#2a2000;border:1px solid #554010;border-radius:6px;font-size:11px;color:#c09020;cursor:pointer">↻ 再試行</button> するか、下の期待値セグメントを参考にしてください。</div>
+    </div>
+    <div style="padding:8px 14px;font-size:11px;color:var(--text3);border-bottom:1px solid #232830">開催場を選択 → 期待値の高いセグメントを確認 → JRAアプリで距離を照合</div>`;
+    // Fallback: show venue chips and segment data
+    const vList2=st.mode==='jra'?JV:LV;
+    const hidden2=lv();
+    const shown2=vList2.filter(v=>!hidden2.has(v));
+    h+=`<div class="vsel" style="position:static;border-bottom:none"><div class="vchips">`;
+    vList2.forEach(v=>{
+      h+=`<div class="vc${!hidden2.has(v)?' on':''}" data-hv="${v}">${v}</div>`;
+    });
+    h+=`</div></div>`;
+    if(shown2.length){
+      shown2.forEach(venue=>h+=renderSegFallback(venue));
+    } else {
+      h+=`<div class="empty">上から開催場をタップしてください</div>`;
+    }
+    return h;
+  }
+  if(autoRaces==='empty'){
+    h+=`<div class="empty">本日のレースデータが<br>見つかりませんでした<br><span style="font-size:12px;color:var(--text3)">開催がない日や取得タイミングによって<br>表示されない場合があります</span></div>`;
+    return h;
   }
 
-  active.forEach(venue=>{
+  // Show races grouped by venue
+  const visibleVenues=venuesWithData.filter(v=>!hidden.has(v));
+  if(!visibleVenues.length){
+    h+=`<div class="empty">会場を選択してください<br><span style="font-size:12px;color:var(--text3)">上のチップをタップ</span></div>`;
+    return h;
+  }
+
+  visibleVenues.forEach(venue=>{
+    const races=autoRaces[venue]||[];
+    const good=races.filter(r=>{
+      if(!r.dist) return false;
+      const ai=getAI(venue,r.r,r.dist);
+      if(!ai) return false;
+      const c=rc(ai.r);
+      return c==='t'||c==='h'||c==='m';
+    });
     h+=`<div class="vblock">
       <div class="vhdr">
         <span class="vname">${venue}</span>
-        <span class="vnote">JRAアプリの出馬表と照合</span>
-      </div>
-      ${renderTodaySegs(venue)}
-    </div>`;
+        <span class="vcount">${races.length}R開催${good.length>0?`　<span style="color:#3dbf78">◎/〇 ${good.length}件</span>`:''}</span>
+      </div>`;
+    let prevH='';
+    races.forEach(race=>{
+      const half=race.r<=6?'前半':'後半';
+      if(half!==prevH){
+        h+=`<div class="hdiv ${half==='前半'?'fh':'bh'}">${half==='前半'?'── 前半（1〜6R）':'── 後半（7R〜）'}</div>`;
+        prevH=half;
+      }
+      h+=renderRaceRow(venue,race);
+    });
+    h+=`</div>`;
   });
   return h;
 }
 
+// ===== BROWSE =====
 function renderBrowse(){
   const isJ=st.mode==='jra';
   const vList=isJ?JV:LV;
   const vData=isJ?JD:LD;
   const cur=isJ?st.venue:st.lV;
   const vd=vData[cur];
-  const S={'t':{bg:'#1a3a28',c:'#3dbf78'},'h':{bg:'#162c1e',c:'#2ea05a'},'m':{bg:'#1a2637',c:'#5090d0'},'l':{bg:'#2a2210',c:'#e09020'},'s':{bg:'#1e1e1e',c:'#777'},'x':{bg:'#1e1212',c:'#c04040'}};
+  const S={'t':{bg:'#1a3a28',c:'#3dbf78'},'h':{bg:'#162c1e',c:'#2ea05a'},'m':{bg:'#1a2637',c:'#5090d0'},'l':{bg:'#2a2210',c:'#c07010'},'s':{bg:'#202020',c:'#666'},'x':{bg:'#1e1212',c:'#a03030'}};
   const mc=(item)=>{
     const cls=rc(item.r);const sv=S[cls]||S.s;
     return `<div class="sc" style="${cls==='x'?'opacity:.4':''}">
@@ -378,45 +597,43 @@ function renderBrowse(){
       ${item.n?`<div class="sn">${item.n}</div>`:''}
     </div>`;
   };
-
   let h=`<div class="sbar">`;
   vList.forEach(v=>h+=`<div class="sbtn${v===cur?' on':''}" data-bv="${v}">${v}</div>`);
   h+=`</div>`;
   if(!vd) return h+`<div class="empty">データなし</div>`;
   if(vd.note) h+=`<div style="font-size:12px;color:var(--text2);padding:10px 14px;border-bottom:1px solid #2a2d35;line-height:1.5">${vd.note}</div>`;
-
   if(isJ){
     h+=`<div style="display:flex;gap:6px;padding:10px 12px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid #232830">`;
     ['前半','後半'].forEach(hf=>h+=`<div class="sbtn${st.half===hf?' on':''}" data-half="${hf}">${hf}</div>`);
     h+=`</div>`;
     const hd=vd[st.half]||{};
-    const SC={芝:'a',ダート:'b',特殊:'c'};
     ['芝','ダート','特殊'].forEach(sf=>{
       const sd=hd[sf];if(!sd||!sd.items||!sd.items.length) return;
-      h+=`<div class="slbl ${SC[sf]}">${sf==='特殊'?'新馬・障害':sf}${sd.rv?` <span style="font-size:10px;color:var(--text2);margin-left:4px">${sd.rv}</span>`:''}</div>`;
+      const lc={芝:'a',ダート:'b',特殊:'c'}[sf];
+      h+=`<div class="slbl ${lc}">${sf==='特殊'?'新馬・障害':sf}${sd.rv?` <span style="font-size:10px;color:var(--text2);margin-left:4px">${sd.rv}</span>`:''}</div>`;
       sd.items.forEach(i=>h+=mc(i));
     });
-  } else {
+  }else{
     if(vd.fl){h+=`<div class="stitle">全セグメント</div>`;(vd.data||[]).forEach(i=>h+=mc(i));}
     else if(vd.ko){
       h+=`<div style="display:flex;gap:6px;padding:10px 12px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid #232830">`;
       ['通常','ファイナル'].forEach(t=>h+=`<div class="sbtn${st.lType===t?' on':''}" data-ltype="${t}">${t}</div>`);
       h+=`</div>`;((vd.data||{})[st.lType]||[]).forEach(i=>h+=mc(i));
-    } else if(vd.ob){
+    }else if(vd.ob){
       h+=`<div style="display:flex;gap:6px;padding:10px 12px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid #232830">`;
-      ['土','日','月','平日'].forEach(d=>h+=`<div class="sbtn${st.lDay===d?' on':''}" data-lday="${d}">${d}${d==='平日'?'':'曜'}</div>`);
+      ['土','日','月','平日'].forEach(d=>h+=`<div class="sbtn${st.lDay===d?' on':''}" data-lday="${d}">${d==='平日'?'平日':d+'曜'}</div>`);
       h+=`</div>`;
       h+=`<div style="display:flex;gap:6px;padding:8px 12px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid #232830">`;
       (vd.segs||['前半','中盤','後半']).forEach(sg=>h+=`<div class="sbtn${st.lSeg===sg?' on':''}" data-lseg="${sg}">${sg}</div>`);
       h+=`</div>`;(((vd.data||{})[st.lDay]||{})[st.lSeg]||[]).forEach(i=>h+=mc(i));
-    } else if(vd.iw){
+    }else if(vd.iw){
       h+=`<div style="display:flex;gap:6px;padding:10px 12px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid #232830">`;
       ['共通','水沢','盛岡'].forEach(s=>h+=`<div class="sbtn${st.lSub===s?' on':''}" data-lsub="${s}">${s}</div>`);
       h+=`</div>`;
       h+=`<div style="display:flex;gap:6px;padding:8px 12px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid #232830">`;
       (vd.segs||['前半','中盤','後半']).forEach(sg=>h+=`<div class="sbtn${st.lSeg===sg?' on':''}" data-lseg="${sg}">${sg}</div>`);
       h+=`</div>`;(((vd.data||{})[st.lSub]||{})[st.lSeg]||[]).forEach(i=>h+=mc(i));
-    } else {
+    }else{
       const segs=vd.segs||['前半','中盤','後半'];
       h+=`<div style="display:flex;gap:6px;padding:10px 12px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid #232830">`;
       segs.forEach(sg=>h+=`<div class="sbtn${st.lSeg===sg?' on':''}" data-lseg="${sg}">${sg}</div>`);
@@ -426,11 +643,12 @@ function renderBrowse(){
   return h;
 }
 
+// ===== MATCH =====
 function renderMatch(){
   const isJ=st.mode==='jra';
   const vList=isJ?JV:LV;
   let h=`<div class="mwrap">
-    <div class="mhint">JRAアプリで確認した距離を入力して照合。例: ダ1700 / 芝1200m</div>
+    <div class="mhint">JRAアプリで確認した距離を入力して照合。例: ダ1700 / 芝1200</div>
     <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
       <select class="msel" id="mV">`;
   vList.forEach(v=>h+=`<option value="${v}"${v===st.mv?' selected':''}>${v}</option>`);
@@ -441,33 +659,28 @@ function renderMatch(){
     h+=`<div class="mrow"><span class="mrn">${race.r}R</span><input class="minp" type="text" placeholder="例: ダ1700" value="${race.d}" data-mi="${i}" id="mi${i}"><div class="mdel" data-mdel="${i}">✕</div></div>`;
   });
   h+=`<div class="madd" id="mAdd">＋ レース追加</div><button class="mrun" id="mRun">照合する</button>`;
-
-  const res=doMatch();
+  const res=st.mr.filter(r=>r.d.trim()).map(r=>{
+    const ai=getAI(st.mv,r.r,r.d);
+    const cls=ai?rc(ai.r):'nd';
+    return {r:r.r,d:r.d,cls,label:TAG[cls]||'─',t:ai&&ai.t?ai.t:'',n:ai&&ai.n?ai.n:''};
+  });
   if(res.length){
     h+=`<div class="stitle" style="margin-top:14px">照合結果</div>`;
     res.forEach(r=>{
-      const label=TAG[r.cls]||'─';
       h+=`<div class="rrow ${r.cls}" style="border-radius:var(--rs);margin:4px 0">
-        <div class="rmain">
-          <span class="rnum">${r.r}R</span>
-          <span class="rdist">${r.d}</span>
-          <span class="rtag ${r.cls}">${label}</span>
+        <div class="rl"><span class="rnum">${r.r}R</span></div>
+        <div class="rc2">
+          <div class="rdist">${r.d}<span class="rtag ${r.cls}" style="margin-left:8px">${r.label}</span></div>
+          ${r.t?`<div class="rtkt">${r.t}</div>`:''}
+          ${r.n?`<div class="rnote">${r.n}</div>`:''}
         </div>
-        ${r.t?`<div class="rtkt">${r.t}</div>`:''}
-        ${r.n?`<div class="rnote">${r.n}</div>`:''}
       </div>`;
     });
   }
   return h+'</div>';
 }
 
-function doMatch(){
-  return st.mr.filter(r=>r.d.trim()).map(r=>{
-    const ai=getAI(st.mv,r.r,r.d);
-    return {r:r.r,d:r.d,cls:ai?rc(ai.r):'n',t:ai&&ai.t?ai.t:'',n:ai&&ai.n?ai.n:''};
-  });
-}
-
+// ===== CORE =====
 function render(){
   const m=document.getElementById('main');
   if(st.view==='today') m.innerHTML=renderToday();
@@ -475,13 +688,14 @@ function render(){
   else m.innerHTML=renderMatch();
   bind();
 }
-
 function bind(){
-  document.querySelectorAll('[data-av]').forEach(el=>el.addEventListener('click',()=>{
-    const v=el.dataset.av;const a=lv();const i=a.indexOf(v);
-    if(i>=0) a.splice(i,1); else a.push(v);
-    sv(a);render();
+  document.querySelectorAll('[data-hv]').forEach(el=>el.addEventListener('click',()=>{
+    const v=el.dataset.hv;
+    if(lv().has(v)) lv().delete(v); else lv().add(v);
+    render();
   }));
+  const rb=document.getElementById('retryBtn');
+  if(rb) rb.addEventListener('click',()=>fetchRaces(true));
   document.querySelectorAll('[data-bv]').forEach(el=>el.addEventListener('click',()=>{if(st.mode==='jra') st.venue=el.dataset.bv; else st.lV=el.dataset.bv;render();}));
   document.querySelectorAll('[data-half]').forEach(el=>el.addEventListener('click',()=>{st.half=el.dataset.half;render();}));
   document.querySelectorAll('[data-lseg]').forEach(el=>el.addEventListener('click',()=>{st.lSeg=el.dataset.lseg;render();}));
@@ -503,10 +717,10 @@ function bind(){
   });
   const mRun=document.getElementById('mRun');if(mRun) mRun.addEventListener('click',()=>render());
 }
-
 document.querySelectorAll('.mtab').forEach(t=>t.addEventListener('click',()=>{
   st.mode=t.dataset.mode;
   document.querySelectorAll('.mtab').forEach(x=>x.classList.toggle('on',x===t));
+  autoRaces=null; // reset on mode switch
   render();
 }));
 document.querySelectorAll('.bn').forEach(b=>b.addEventListener('click',()=>{
@@ -520,9 +734,9 @@ document.getElementById('rfBtn').addEventListener('click',()=>{
   setTimeout(()=>{btn.style.transform='';btn.style.transition='';},400);
   const d=new Date();
   document.getElementById('hdrDate').textContent=`${d.getMonth()+1}月${d.getDate()}日（${DAYS[d.getDay()]}）`;
-  render();
+  if(st.view==='today') fetchRaces(true);
+  else render();
 });
-
 (function init(){
   const d=new Date();
   document.getElementById('hdrDate').textContent=`${d.getMonth()+1}月${d.getDate()}日（${DAYS[d.getDay()]}）`;
